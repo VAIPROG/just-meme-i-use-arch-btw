@@ -1,0 +1,423 @@
+/* =========================================================
+   STYLES — base layout, terminal chrome, component styles
+   ========================================================= */
+
+/* ── Reset ────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Base ─────────────────────────────────────────────── */
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', 'Courier New', Courier, monospace;
+  background-color: var(--bg-base);
+  color: var(--fg-base);
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  padding: 1rem;
+  position: relative;
+}
+
+/* ── Ambient blobs ────────────────────────────────────── */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 1;
+  animation: blob-drift 12s ease-in-out infinite;
+}
+
+body::before {
+  background: var(--accent-blue);
+  top: 8%;
+  left: 6%;
+  animation-delay: 0s;
+}
+
+body::after {
+  background: var(--accent-green);
+  bottom: 8%;
+  right: 6%;
+  animation-delay: -6s;
+}
+
+/* ── Scrollbars ───────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-green);
+}
+
+* {
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  scrollbar-width: thin;
+}
+
+/* ── Terminal window ──────────────────────────────────── */
+#terminal-window {
+  width: 100%;
+  max-width: 960px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.6), var(--neon-glow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 600px;
+  position: relative;
+  z-index: 10;
+  transition: box-shadow 0.4s ease;
+}
+
+/* ── Titlebar ─────────────────────────────────────────── */
+#titlebar {
+  background: var(--bg-titlebar);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.titlebar-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: filter 0.15s;
+}
+
+.dot:hover {
+  filter: brightness(1.25);
+}
+
+.dot-red    { background: var(--accent-red); }
+.dot-yellow { background: var(--accent-yellow); }
+.dot-green  { background: var(--accent-green); }
+
+#titlebar-title {
+  flex: 1;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--fg-dim);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#titlebar-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.ctrl-btn {
+  padding: 2px 7px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--fg-dim);
+  font-family: inherit;
+  font-size: 0.65rem;
+  border-radius: 3px;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+
+.ctrl-btn:hover {
+  color: var(--fg-base);
+  border-color: var(--fg-dim);
+  background: var(--bg-overlay);
+}
+
+/* ── Terminal body ────────────────────────────────────── */
+#terminal-body {
+  padding: 20px 28px 20px;
+  flex: 1;
+  overflow-y: auto;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  display: flex;
+  flex-direction: column;
+  cursor: text;
+}
+
+/* ── Terminal output ──────────────────────────────────── */
+#terminal-output {
+  flex: 1;
+}
+
+/* Output line variants */
+.t-line {
+  display: block;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.t-line--cmd     { color: var(--fg-bright); }
+.t-line--output  { color: var(--fg-base); }
+.t-line--success { color: var(--accent-green); }
+.t-line--error   { color: var(--accent-red); }
+.t-line--warn    { color: var(--accent-yellow); }
+.t-line--info    { color: var(--accent-cyan); }
+.t-line--dim     { color: var(--fg-dim); font-size: 0.8em; }
+.t-line--blank   { min-height: 1.2em; }
+.t-line--ascii   { white-space: pre; overflow-x: auto; line-height: 1.3; }
+.t-line--block   { white-space: normal; }
+
+/* ── Neofetch layout ──────────────────────────────────── */
+.neofetch-block {
+  display: flex;
+  flex-direction: row;
+  gap: 2.5rem;
+  align-items: flex-start;
+  margin: 0.25rem 0;
+}
+
+.neofetch-ascii {
+  color: var(--accent-blue);
+  font-weight: 700;
+  line-height: 1.25;
+  white-space: pre;
+  flex-shrink: 0;
+  font-size: 0.875rem;
+}
+
+.neofetch-ascii.neon {
+  text-shadow: var(--neon-glow);
+}
+
+.neofetch-info {
+  color: var(--fg-base);
+  line-height: 1.8;
+  flex: 1;
+}
+
+.neofetch-info .nf-title {
+  font-weight: 700;
+  margin-bottom: 0.1rem;
+}
+
+.neofetch-info .nf-title .nf-user { color: var(--accent-blue); }
+.neofetch-info .nf-title .nf-sep  { color: var(--fg-dim); }
+.neofetch-info .nf-title .nf-host { color: var(--accent-blue); }
+
+.neofetch-info .nf-sep-line {
+  color: var(--fg-dim);
+  margin-bottom: 0.15rem;
+}
+
+.nf-key   { color: var(--accent-green); font-weight: 600; }
+.nf-value { color: var(--fg-base); }
+
+.color-swatches {
+  display: flex;
+  gap: 4px;
+  margin-top: 0.5rem;
+}
+
+.swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+}
+
+/* ── BTW title display ────────────────────────────────── */
+.btw-title {
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0.5rem 0;
+  color: var(--accent-blue);
+}
+
+.btw-title .btw-word {
+  color: var(--accent-cyan);
+}
+
+/* ── Prompt line ──────────────────────────────────────── */
+#prompt-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin-top: 4px;
+  min-height: 1.65em;
+  position: relative;
+}
+
+.prompt-bracket { color: var(--fg-dim); }
+.prompt-user    { color: var(--accent-blue); font-weight: 600; }
+.prompt-at      { color: var(--fg-dim); }
+.prompt-host    { color: var(--accent-blue); font-weight: 600; }
+.prompt-space   { width: 0.3em; display: inline-block; }
+.prompt-path    { color: var(--accent-cyan); }
+.prompt-sym     { color: var(--accent-green); font-weight: 700; margin: 0 0.4em 0 0.2em; }
+
+#prompt-display {
+  color: var(--fg-bright);
+  white-space: pre;
+}
+
+/* ── Hidden keyboard capture input ───────────────────── */
+#terminal-input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  top: 0;
+  left: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: transparent;
+  caret-color: transparent;
+  resize: none;
+  overflow: hidden;
+  /* NOT display:none — must remain focusable on iOS */
+}
+
+/* ── Share toast ──────────────────────────────────────── */
+#share-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--bg-overlay);
+  border: 1px solid var(--accent-green);
+  color: var(--accent-green);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-family: inherit;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+  z-index: 100;
+}
+
+#share-toast.visible {
+  opacity: 1;
+}
+
+/* ── Vim mode indicator ───────────────────────────────── */
+#vim-indicator {
+  display: none;
+  font-size: 0.7rem;
+  color: var(--fg-dim);
+  padding: 2px 8px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-titlebar);
+}
+
+#vim-indicator.visible {
+  display: block;
+}
+
+/* ── Help table ───────────────────────────────────────── */
+.help-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85em;
+  margin: 0.25rem 0;
+}
+
+.help-table td {
+  padding: 1px 0;
+  vertical-align: top;
+}
+
+.help-table td:first-child {
+  color: var(--accent-cyan);
+  padding-right: 1.5rem;
+  white-space: nowrap;
+}
+
+.help-table td:last-child {
+  color: var(--fg-dim);
+}
+
+/* ── Mobile ───────────────────────────────────────────── */
+@media (max-width: 640px) {
+  body {
+    padding: 0;
+    align-items: stretch;
+  }
+
+  #terminal-window {
+    min-height: 100dvh;
+    border-radius: 0;
+    max-width: 100%;
+    border-left: none;
+    border-right: none;
+  }
+
+  #terminal-body {
+    padding: 14px 16px 14px;
+    font-size: 0.78rem;
+  }
+
+  .neofetch-ascii {
+    font-size: 0.45rem;
+    line-height: 1.15;
+  }
+
+  .neofetch-block {
+    gap: 1rem;
+  }
+
+  .btw-title {
+    font-size: clamp(1.4rem, 8vw, 2.2rem);
+  }
+
+  #titlebar-controls .ctrl-btn {
+    font-size: 0.58rem;
+    padding: 2px 5px;
+  }
+}
+
+@media (max-width: 420px) {
+  .neofetch-ascii {
+    display: none;
+  }
+}
