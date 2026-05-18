@@ -1,0 +1,149 @@
+/* =========================================================
+   THEMES — CSS custom properties, one block per theme.
+   Applied via [data-theme] on <body>.
+   ========================================================= */
+
+[data-theme="tokyo-night"] {
+  --bg-base:        #0f0f0f;
+  --bg-surface:     #1a1b26;
+  --bg-titlebar:    #15161e;
+  --bg-overlay:     #24283b;
+  --border:         #414868;
+  --fg-base:        #a9b1d6;
+  --fg-dim:         #565f89;
+  --fg-bright:      #c0caf5;
+  --accent-blue:    #1793d1;
+  --accent-green:   #9ece6a;
+  --accent-cyan:    #73daca;
+  --accent-yellow:  #e0af68;
+  --accent-red:     #f7768e;
+  --accent-purple:  #bb9af7;
+  --accent-orange:  #ff9e64;
+  --cursor-color:   #a9b1d6;
+  --neon-glow:      0 0 8px rgba(23,147,209,0.6), 0 0 20px rgba(23,147,209,0.2);
+  --scrollbar-thumb: #1793d1;
+  --scrollbar-track: #1a1b26;
+  --color-swatch-1: #1a1b26;
+  --color-swatch-2: #f7768e;
+  --color-swatch-3: #9ece6a;
+  --color-swatch-4: #e0af68;
+  --color-swatch-5: #7aa2f7;
+  --color-swatch-6: #bb9af7;
+  --color-swatch-7: #7dcfff;
+}
+
+[data-theme="gruvbox"] {
+  --bg-base:        #1d2021;
+  --bg-surface:     #282828;
+  --bg-titlebar:    #1d2021;
+  --bg-overlay:     #3c3836;
+  --border:         #504945;
+  --fg-base:        #d5c4a1;
+  --fg-dim:         #928374;
+  --fg-bright:      #ebdbb2;
+  --accent-blue:    #83a598;
+  --accent-green:   #b8bb26;
+  --accent-cyan:    #8ec07c;
+  --accent-yellow:  #fabd2f;
+  --accent-red:     #fb4934;
+  --accent-purple:  #d3869b;
+  --accent-orange:  #fe8019;
+  --cursor-color:   #ebdbb2;
+  --neon-glow:      0 0 8px rgba(250,189,47,0.5), 0 0 20px rgba(250,189,47,0.15);
+  --scrollbar-thumb: #fabd2f;
+  --scrollbar-track: #282828;
+  --color-swatch-1: #282828;
+  --color-swatch-2: #fb4934;
+  --color-swatch-3: #b8bb26;
+  --color-swatch-4: #fabd2f;
+  --color-swatch-5: #83a598;
+  --color-swatch-6: #d3869b;
+  --color-swatch-7: #8ec07c;
+}
+
+[data-theme="nord"] {
+  --bg-base:        #1a1e2a;
+  --bg-surface:     #2e3440;
+  --bg-titlebar:    #242933;
+  --bg-overlay:     #3b4252;
+  --border:         #4c566a;
+  --fg-base:        #d8dee9;
+  --fg-dim:         #4c566a;
+  --fg-bright:      #eceff4;
+  --accent-blue:    #5e81ac;
+  --accent-green:   #a3be8c;
+  --accent-cyan:    #88c0d0;
+  --accent-yellow:  #ebcb8b;
+  --accent-red:     #bf616a;
+  --accent-purple:  #b48ead;
+  --accent-orange:  #d08770;
+  --cursor-color:   #d8dee9;
+  --neon-glow:      0 0 8px rgba(136,192,208,0.5), 0 0 20px rgba(136,192,208,0.15);
+  --scrollbar-thumb: #5e81ac;
+  --scrollbar-track: #2e3440;
+  --color-swatch-1: #2e3440;
+  --color-swatch-2: #bf616a;
+  --color-swatch-3: #a3be8c;
+  --color-swatch-4: #ebcb8b;
+  --color-swatch-5: #5e81ac;
+  --color-swatch-6: #b48ead;
+  --color-swatch-7: #88c0d0;
+}
+
+[data-theme="dracula"] {
+  --bg-base:        #191a21;
+  --bg-surface:     #282a36;
+  --bg-titlebar:    #21222c;
+  --bg-overlay:     #343746;
+  --border:         #44475a;
+  --fg-base:        #f8f8f2;
+  --fg-dim:         #6272a4;
+  --fg-bright:      #ffffff;
+  --accent-blue:    #6272a4;
+  --accent-green:   #50fa7b;
+  --accent-cyan:    #8be9fd;
+  --accent-yellow:  #f1fa8c;
+  --accent-red:     #ff5555;
+  --accent-purple:  #bd93f9;
+  --accent-orange:  #ffb86c;
+  --cursor-color:   #f8f8f2;
+  --neon-glow:      0 0 8px rgba(189,147,249,0.6), 0 0 20px rgba(189,147,249,0.2);
+  --scrollbar-thumb: #bd93f9;
+  --scrollbar-track: #282a36;
+  --color-swatch-1: #282a36;
+  --color-swatch-2: #ff5555;
+  --color-swatch-3: #50fa7b;
+  --color-swatch-4: #f1fa8c;
+  --color-swatch-5: #6272a4;
+  --color-swatch-6: #bd93f9;
+  --color-swatch-7: #8be9fd;
+}
+
+[data-theme="solarized"] {
+  --bg-base:        #001e26;
+  --bg-surface:     #002b36;
+  --bg-titlebar:    #00212b;
+  --bg-overlay:     #073642;
+  --border:         #094555;
+  --fg-base:        #839496;
+  --fg-dim:         #586e75;
+  --fg-bright:      #93a1a1;
+  --accent-blue:    #268bd2;
+  --accent-green:   #859900;
+  --accent-cyan:    #2aa198;
+  --accent-yellow:  #b58900;
+  --accent-red:     #dc322f;
+  --accent-purple:  #6c71c4;
+  --accent-orange:  #cb4b16;
+  --cursor-color:   #839496;
+  --neon-glow:      0 0 8px rgba(38,139,210,0.5), 0 0 20px rgba(38,139,210,0.15);
+  --scrollbar-thumb: #268bd2;
+  --scrollbar-track: #002b36;
+  --color-swatch-1: #002b36;
+  --color-swatch-2: #dc322f;
+  --color-swatch-3: #859900;
+  --color-swatch-4: #b58900;
+  --color-swatch-5: #268bd2;
+  --color-swatch-6: #6c71c4;
+  --color-swatch-7: #2aa198;
+}
