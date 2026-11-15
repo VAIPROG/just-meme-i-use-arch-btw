@@ -2,7 +2,7 @@
 
 A terminal meme page for people who need the world to know.
 
-Live: [vadim-khristenko.github.io/just-meme-i-use-arch-btw](https://vadim-khristenko.github.io/just-meme-i-use-arch-btw)
+Live: [vai-rice.space/just-meme-i-use-arch-btw](https://vai-rice.space/just-meme-i-use-arch-btw)
 
 ## What it does
 
@@ -117,4 +117,4 @@ GitHub Pages workflow in `.github/workflows/gh-pages.yml` deploys on every push 
 
 ---
 
-MIT © Vadim Khristenko
+MIT © VAI_PROG (Vadim)
